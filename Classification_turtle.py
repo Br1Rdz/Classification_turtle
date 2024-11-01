@@ -11,6 +11,7 @@ import re
 import json
 import random_responses
 import time
+import matplotlib.pyplot as plt
 
 #Decoracion de la app
 st.set_page_config(page_title="Imagen Classification", 
