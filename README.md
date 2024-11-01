@@ -9,3 +9,6 @@ Debido a los pocos datos que tiene el "dataset" se opto por crear un modelo de p
 - val_accuracy: 0.8500
 - loss: 0.0059
 - val_loss: 0.3905.
+
+ ##Para desplegar la aplicaacion en un entorno de "streamlit" 
+ 1. Clona el repertorio en alguna carpeta de tu eleccion 
