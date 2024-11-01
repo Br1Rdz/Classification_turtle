@@ -1,0 +1,74 @@
+[
+    {
+        "response_type" :"greeting",
+        "user_input":["hola","holi","hey"],
+        "bot_response": "Hola!",
+        "required_words":[]
+    },
+    {
+        "response_type":"greeting",
+        "user_input":"gracias",
+        "bot_response":"A ti, espero poder ayudarte",
+        "required_words":[]
+    },
+    {
+        "response_type":"greeting",
+        "user_input":["chinga","madre"],
+        "bot_response":"La tuya por que la mia es digital",
+        "required_words":[]
+    },
+    {
+        "response_type": "question",
+        "user_input": ["descripcion","trachemys","scripta"],
+        "bot_response": "Es una especie de reptil de la familia de las tortugas jicoteas (Emydidae). Su carapacho es café u olivo marcado con líneas y reticulaciones amarillas, ovalado, ligeramente plano y puede presentar una débil quilla dorsal; ambién ligeramente serrado en su margen posterior.",
+        "required_words" : []
+    },
+    {
+        "response_type": "question",
+        "user_input": ["distribuye", "distribucion","trachemys","scripta"],
+        "bot_response": "Se distribuye al este de Estados Unidos y noreste de México y ha sido introducida en el oriente de Asia, Australia y en Europa debido a su popularidad como mascota, especialmente la subespecie norteamericana Trachemys scripta.",
+        "required_words" : []
+    },
+    {
+        "response_type": "question",
+        "user_input": ["quien", "es","bugno","Bruno"],
+        "bot_response": "No se habla de Bruno",
+        "required_words" : []
+    },
+    {
+        "response_type": "question",
+        "user_input": ["descripcion", "gopherus", "flavomarginatus"],
+        "bot_response":"La tortuga mexicana, tortuga de Mapimí, tortuga del Bolsón, tortuga grande, tortuga llanero o tortuga topo (Gopherus flavomarginatus) es una tortuga terrestre endémica de México. De las cuatro especies del género Gopherus de América del Norte es la más grande, con una longitud de unos 46 cm.",
+        "required_words":[]
+    },
+    {
+        "response_type":"question",
+        "user_input":["donde","distribuye", "distribucion", "gopherus", "flavomarginatus"],
+        "bot_response":"Vive en una región del desierto de Chihuahua conocida como Bolsón de Mapimí, que se encuentra en la unión de los estados de Chihuahua, Durango y Coahuila.",
+        "required_words":[]
+    },
+    {
+        "response_type":"question",
+        "user_input":["descripcion","terrapene", "coahuila"],
+        "bot_response":"Las longitudes reportadas para T. coahuila en la literatura, sugieren tallas de 159 y 168 mm para hembras y machos, respectivamente (Iverson, 1982); sin embargo, en estudios recientes no publicados aún, se tienen longitudes de caparazón de 150.9 mm en hembras y de hasta 184.8 mm en machos",
+        "required_words":[]
+    },
+    {
+        "response_type":"question",
+        "user_input":["distribucion","distribuye","terrapene", "coahuila"],
+        "bot_response":"Terrapene coahuila es una especie micro-endémica del sistema de humedales del valle desértico de Cuatro Ciénegas en el Estado de Coahuila, México.",
+        "required_words":[]
+    },
+    {
+        "response_type":"question",
+        "user_input":["descripcion","kinosternon"],
+        "bot_response":"La tortuga de pantano amarilla es un pequeño reptil de color verde oliva. Su nombre proviene de las áreas de color amarillo de su garganta, cabeza y en los lados de su cuello. El forro del fondo es de color amarillo a marrón con dos bisagras, lo que permite a la tortuga cerrar cada extremo por separado. La cola del macho tiene una espina dorsal contundente en el final, pero la cola de la hembra no la tiene.",
+        "required_words":[]
+    },
+    {
+        "response_type":"question",
+        "user_input":["distribucion","distribuye", "kinosternon"],
+        "bot_response":"Se distribuye por el norte de México y el centro de Estados Unidos.",
+        "required_words":[]
+    }
+]    
