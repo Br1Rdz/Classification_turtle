@@ -130,7 +130,8 @@ def classify_images(image_path):
 #     #imprimir la probabilidad de la imagen
      print(outcome)
 
-     plt.show(fig)
+     plt.show()
+     return fig
 
 #Carga de la imagen a clasificar
 file = st.file_uploader("Porfavor carga una imagen", type = ["jpg","png"])
