@@ -85,7 +85,7 @@ def get_responses(input_string):
 turtle_name = ['Ghopherus_flagomagenatus', 'Kinisternon_flavescens', 'Terrapene_coahuila', 'Trachemys_scripta']
 
 #carga del modelo
-model = tf.keras.models.load_model('turtle_model_V_1_6.keras')
+model = tf.keras.models.load_model('turtle_model_V_1_7.keras')
 
 #######################################
 #def classify_images(image_path):
