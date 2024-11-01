@@ -10,5 +10,13 @@ Debido a los pocos datos que tiene el "dataset" se opto por crear un modelo de p
 - loss: 0.0059
 - val_loss: 0.3905.
 
- ##Para desplegar la aplicaacion en un entorno de "streamlit" 
- 1. Clona el repertorio en alguna carpeta de tu eleccion 
+ ##Para desplegar la aplicacion y uso
+ 
+ 1. Clona el repertorio https://github.com/Br1Rdz/Classification_turtle.git en alguna carpeta de tu eleccion
+ 2. Intala pip install freeze
+ 3. Instalacion de las dependencias a usar pip install -r requirements.txt
+ 4. Ejecuta la aplicación streamlit run Classification_turtle.py
+ 5. Añade la imagen a clasificar
+ 6. FELICIDADES AQUI ESTA TU CLASIFFICACION
+ 7. La aplicacion tambien tiene un chatbot sobre datos generales de las especie
+ 8. ESPERO DISFRUTES LA APP.
