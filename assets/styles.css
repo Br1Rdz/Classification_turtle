@@ -1,0 +1,10 @@
+/* texto dentro del input */
+.st-key-styledinput input {
+    border: 5px solid
+    #1db2cc;
+}
+
+.st-key-styledinput
+input:focus {
+    border: none;
+}
