@@ -12,6 +12,7 @@ import json
 import random_responses
 import time
 import matplotlib.pyplot as plt
+import pathlib
 
 #Decoracion de la app
 st.set_page_config(page_title="Imagen Classification", 
@@ -21,23 +22,41 @@ st.set_page_config(page_title="Imagen Classification",
                    menu_items=None)
 
 #https://discuss.streamlit.io/t/how-to-indent-bullet-point-list-items/28594/3
+#color backgroun
+#https://discuss.streamlit.io/t/how-to-set-the-background-color-and-text-color-of-st-header-st-write-etc-and-let-the-text-be-showed-at-the-left-side-of-input-and-select-box/11826/6
 markdown = """
 Clasificación de imagen de tortuga de estas especies:
 - *Gopherus flavomarginatus*
 - *Kinosternon flavescens*
 - *Terrapene coahuila*
 - *Trachemys scripta*
-
-Developed Bruno Rodriguez
+\n
+El uso del Chatbot se desplega al clasificar tu imagen
+- Algunos ejemplos de pregunta:
+- Descripcion de *Gopherus flavomarginatus*
+- Distribucion de *Trachemys scripta*
+\n
+:grey-background[Developed Bruno Rodriguez]
 """
-st.sidebar.title("INFORMACION \nV.1.0")
+st.sidebar.title("INFORMACION\nV.1.0")
 st.sidebar.info(markdown)
 
 logo = "./Clicker.jpg"
 st.sidebar.image(logo)
 
 
-st.title("Ask my JORGE")
+#st.title("Ask my JORGE")
+st.markdown("<h1 style='text-align: center;'>Ask my JORGE</h1>", unsafe_allow_html=True)
+
+#st.markdown("<h1 style='text-align: center; color: red;'>Ask my JORGE</h1>", unsafe_allow_html=True)
+
+# #funcion para cargar los css
+# def load_css(file_path):
+#     with open(file_path) as f:
+#         st.html(f"<style>{f.read()}</style>")
+
+# css_path = pathlib.Path("./assets/styles.css")
+# load_css(css_path)        
 
 #Script main chatbot
 def load_json(file):
@@ -45,7 +64,7 @@ def load_json(file):
         # print(f"Loaded '{file}' succesfully!")
         return json.load(bot_responses)
 
-responses_data = load_json("bot.json")
+responses_data = load_json("./bot.json")
 
 def get_responses(input_string):
     split_message = re.split(r'\s+|[,;?!.-]\s*', input_string.lower())
@@ -83,10 +102,10 @@ def get_responses(input_string):
 
 ##Clasificacion de imagen
 #nombres de las tortugas
-turtle_name = ['Ghopherus_flagomagenatus', 'Kinisternon_flavescens', 'Terrapene_coahuila', 'Trachemys_scripta']
+turtle_name = ['Ghopherus flagomagenatus', 'Kinisternon flavescens', 'Terrapene coahuila', 'Trachemys scripta']
 
 #carga del modelo
-model = tf.keras.models.load_model('turtle_model_V_1_7.keras')
+model = tf.keras.models.load_model('./turtle_model_V_1_7.keras')
 
 #######################################
 #def classify_images(image_path):
@@ -110,15 +129,17 @@ def classify_images(image_path):
      result = tf.nn.softmax(prediction[0])
 #     # #https://stackoverflow.com/questions/45310254/fixed-digits-after-decimal-with-f-strings
      # outcome = f"The imagen belog to {turtle_name[np.argmax(result)]} with score {max(result) * 100:.3f}"
-     outcome = f"The imagen belog to {turtle_name[np.argmax(result)]}"
+     outcome = f'Tu imagen es clasificada como: {turtle_name[np.argmax(result)]}'
+
 
 #     #Grafico de la distribucion de probabilidades
      class_turtle = ['Gopherus flavomarginatus',
                      'Kinosternon flavescens', 
-                     'Terrapene_coahuila', 
-                     'Trachemys_scripta']
-
-     fig, ax = plt.subplots()
+                     'Terrapene coahuila', 
+                     'Trachemys scripta']
+     
+     
+     fig, ax = plt.subplots(figsize=(3, 3))
      y_pos = np.arange(len(class_turtle))
      ax.barh(y_pos, prediction[0], align = 'center')
      ax.set_yticks(y_pos)
@@ -127,10 +148,12 @@ def classify_images(image_path):
      ax.set_xlabel("Probality")
      ax.set_title("Turtle Classification")
 
-#     #imprimir la probabilidad de la imagen
-     print(outcome)
-     
-     return plt.show(fig)
+    # Mostrar la imagen y el resultado en Streamlit
+     #st.image(input_image, caption='Uploaded Image', use_column_width=True)
+     #st.write(outcome)
+     st.pyplot(fig)
+         
+     return outcome
 
 #Carga de la imagen a clasificar
 file = st.file_uploader("Porfavor carga una imagen", type = ["jpg","png"])
@@ -165,17 +188,25 @@ if file is not None:
             )
 
     #st.write("# Auto-playing Audio!")
-
+    
     autoplay_audio("./Finish.mp3") 
     
 #chatbot interface   
 # Interfaz de Streamlit
     st.markdown('''### Chatbot de Tortugas 🐢 ''')
-    st.markdown('''Ejemplo: 
-                    \n- Descripcion de *Gopherus flavomarginatus*
-                    \n- Distribucion de *Trachemys scripta*
-                ''')
-    
+    # st.markdown('''Ejemplo: 
+    #                 \n- Descripcion de *Gopherus flavomarginatus*
+    #                 \n- Distribucion de *Trachemys scripta*
+    #             ''')
+   # https://stackoverflow.com/questions/78966048/how-to-change-background-color-of-st-text-input-in-streamlit
+    st.markdown("""
+    <style>
+        .stTextInput input[aria-label="Tú:"] {
+            background-color: #1db2cc;
+            color: #000000;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
     # Caja de texto para entrada del usuario
     user_input = st.text_input("Tú:", "")
@@ -186,7 +217,8 @@ if file is not None:
         st.text_area("BugNo:", bot_response, height=10, max_chars=None) 
     
 else:
-    st.text("No has cargado imagen aún!")
+    #st.text("No has cargado imagen aún!")
+    st.text("")
 
 # #chatbot interface   
 # # Interfaz de Streamlit
