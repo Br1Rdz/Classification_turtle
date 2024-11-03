@@ -13,6 +13,9 @@ import random_responses
 import time
 import matplotlib.pyplot as plt
 import pathlib
+from streamlit_extras.app_logo import add_logo
+import zipfile
+
 
 #Decoracion de la app
 st.set_page_config(page_title="Imagen Classification", 
@@ -25,7 +28,7 @@ st.set_page_config(page_title="Imagen Classification",
 #color backgroun
 #https://discuss.streamlit.io/t/how-to-set-the-background-color-and-text-color-of-st-header-st-write-etc-and-let-the-text-be-showed-at-the-left-side-of-input-and-select-box/11826/6
 markdown = """
-Clasificación de imagen de tortuga de estas especies:
+La app realiza clasificacion de imagenes de las siguientes especies:
 - *Gopherus flavomarginatus*
 - *Kinosternon flavescens*
 - *Terrapene coahuila*
@@ -36,7 +39,7 @@ El uso del Chatbot se desplega al clasificar tu imagen
 - Descripcion de *Gopherus flavomarginatus*
 - Distribucion de *Trachemys scripta*
 \n
-:grey-background[Developed Bruno Rodriguez]
+:grey-background[*Developed  by Bruno Rodriguez*]
 """
 st.sidebar.title("INFORMACION\nV.1.0")
 st.sidebar.info(markdown)
@@ -100,12 +103,14 @@ def get_responses(input_string):
     return random_responses.random_string()
 ########
 
+#Tensorflow completo
+
 ##Clasificacion de imagen
 #nombres de las tortugas
-turtle_name = ['Ghopherus flagomagenatus', 'Kinisternon flavescens', 'Terrapene coahuila', 'Trachemys scripta']
+#turtle_name = ['Ghopherus flagomagenatus', 'Kinisternon flavescens', 'Terrapene coahuila', 'Trachemys scripta']
 
 #carga del modelo
-model = tf.keras.models.load_model('./turtle_model_V_1_7.keras')
+#model = tf.keras.models.load_model('./turtle_model_V_1_7.keras')
 
 #######################################
 #def classify_images(image_path):
@@ -120,40 +125,88 @@ model = tf.keras.models.load_model('./turtle_model_V_1_7.keras')
 #     return outcome
 ###########################################
 
-def classify_images(image_path):
-     input_image = tf.keras.utils.load_img(image_path, target_size= (224, 224))
-     input_image_array = tf.keras.utils.img_to_array(input_image)
-     input_image_exp_dim = tf.expand_dims(input_image_array, 0)
+# def classify_images(image_path):
+#      input_image = tf.keras.utils.load_img(image_path, target_size= (224, 224))
+#      input_image_array = tf.keras.utils.img_to_array(input_image)
+#      input_image_exp_dim = tf.expand_dims(input_image_array, 0)
 
-     prediction = model.predict(input_image_exp_dim)
-     result = tf.nn.softmax(prediction[0])
-#     # #https://stackoverflow.com/questions/45310254/fixed-digits-after-decimal-with-f-strings
-     # outcome = f"The imagen belog to {turtle_name[np.argmax(result)]} with score {max(result) * 100:.3f}"
-     outcome = f'Tu imagen es clasificada como: {turtle_name[np.argmax(result)]}'
+#      prediction = model.predict(input_image_exp_dim)
+#      result = tf.nn.softmax(prediction[0])
+# #     # #https://stackoverflow.com/questions/45310254/fixed-digits-after-decimal-with-f-strings
+#      # outcome = f"The imagen belog to {turtle_name[np.argmax(result)]} with score {max(result) * 100:.3f}"
+#      outcome = f'Tu imagen es clasificada como: {turtle_name[np.argmax(result)]}'
 
 
-#     #Grafico de la distribucion de probabilidades
-     class_turtle = ['Gopherus flavomarginatus',
-                     'Kinosternon flavescens', 
-                     'Terrapene coahuila', 
-                     'Trachemys scripta']
+# #     #Grafico de la distribucion de probabilidades
+#      class_turtle = ['Gopherus flavomarginatus',
+#                      'Kinosternon flavescens', 
+#                      'Terrapene coahuila', 
+#                      'Trachemys scripta']
      
      
-     fig, ax = plt.subplots(figsize=(3, 3))
-     y_pos = np.arange(len(class_turtle))
-     ax.barh(y_pos, prediction[0], align = 'center')
-     ax.set_yticks(y_pos)
-     ax.set_yticklabels(class_turtle)
-     ax.invert_yaxis()
-     ax.set_xlabel("Probality")
-     ax.set_title("Turtle Classification")
+#      fig, ax = plt.subplots(figsize=(3, 3))
+#      y_pos = np.arange(len(class_turtle))
+#      ax.barh(y_pos, prediction[0], align = 'center')
+#      ax.set_yticks(y_pos)
+#      ax.set_yticklabels(class_turtle)
+#      ax.invert_yaxis()
+#      ax.set_xlabel("Probality")
+#      ax.set_title("Turtle Classification")
 
-    # Mostrar la imagen y el resultado en Streamlit
-     #st.image(input_image, caption='Uploaded Image', use_column_width=True)
-     #st.write(outcome)
-     st.pyplot(fig)
+#     # Mostrar la imagen y el resultado en Streamlit
+#      #st.image(input_image, caption='Uploaded Image', use_column_width=True)
+#      #st.write(outcome)
+#      st.pyplot(fig)
          
-     return outcome
+#      return outcome
+# ################################
+
+# Cargar el modelo TFLite
+
+interpreter = tf.lite.Interpreter(model_path='./turtle_model_V_1_7.tflite')
+interpreter.allocate_tensors()
+
+# Obtener detalles de entrada y salida
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Lista de nombres de tortugas
+class_turtle = ['Gopherus flavomarginatus', 'Kinosternon flavescens', 'Terrapene coahuila', 'Trachemys scripta']
+
+def classify_images(image_path):
+    # Preprocesar la imagen
+    input_image = tf.keras.utils.load_img(image_path, target_size=(224, 224))
+    input_image_array = tf.keras.utils.img_to_array(input_image)
+    input_image_exp_dim = tf.expand_dims(input_image_array, 0)
+
+    # Convert the EagerTensor to a NumPy array and then change the data type
+    input_image_exp_dim = tf.cast(input_image_exp_dim, dtype=tf.float32)
+    #input_image_exp_dim = input_image_exp_dim.astype(np.float32)  # Asegúrate de que sea float32 para TFLite
+
+    # Hacer predicción con el intérprete TFLite
+    interpreter.set_tensor(input_details[0]['index'], input_image_exp_dim)
+    interpreter.invoke()
+    prediction = interpreter.get_tensor(output_details[0]['index'])[0]
+
+    # Aplicar softmax para obtener probabilidades
+    result = tf.nn.softmax(prediction)
+    outcome = f"The image belongs to {class_turtle[np.argmax(result)]} with a score of {max(result) * 100:.3f}%"
+
+    # Crear gráfico de la distribución de probabilidades
+    fig, ax = plt.subplots()
+    y_pos = np.arange(len(class_turtle))
+    ax.barh(y_pos, result, align='center')
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(class_turtle)
+    ax.invert_yaxis()
+    ax.set_xlabel("Probability")
+    ax.set_title("Turtle Classification")
+
+    # Imprimir el resultado
+    #print(outcome)
+    st.pyplot(fig)
+    # Mostrar el gráfico
+    return outcome
 
 #Carga de la imagen a clasificar
 file = st.file_uploader("Porfavor carga una imagen", type = ["jpg","png"])
