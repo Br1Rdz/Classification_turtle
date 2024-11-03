@@ -6,13 +6,15 @@
 > [!IMPORTANT]  
 >Para desplegar la aplicacion y uso
 >  1. Clona el repertorio [Classification_turtle](https://github.com/Br1Rdz/Classification_turtle.git) en alguna carpeta de tu eleccion
->  2. Intala pip install freeze
->  3. Instalacion de las dependencias a usar pip install -r requirements.txt
->  4. Ejecuta la aplicación streamlit run Classification_turtle.py
->  5. Añade la imagen a clasificar
->  6. FELICIDADES AQUI ESTA TU CLASIFFICACION
->  7. La aplicacion tambien tiene un chatbot sobre datos generales de las especie
->  8. ESPERO DISFRUTES LA APP.
+>  2. Instalacion de las dependencias a usar pip install -r requirements.txt
+>  3. Ejecuta la aplicación streamlit run Classification_turtle.py
+>  4. Añade la imagen a clasificar
+>  5. FELICIDADES AQUI ESTA TU CLASIFFICACION
+>  6. La aplicacion tambien tiene un chatbot sobre datos generales de las especie
+>  7. ESPERO DISFRUTES LA APP.
+
+> [!WARNING]  
+> Puede ser que algunas clasificaciones falle en su predicion esto es debido al tamaño del dataset.
 
 > [!TIP]
 > > Si usas GPU la clasificacion es mas rapido minimo de 2 Gbs
