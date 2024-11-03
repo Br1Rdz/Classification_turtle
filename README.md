@@ -17,7 +17,7 @@
 > 7. ESPERO DISFRUTES LA APP.
 
 > [!WARNING]  
-> Puede ser que algunas clasificaciones falle en su predicion esto es debido al tamaño del dataset.
+> Debido aque git no permite descargar archivos superiores a 250 mb el archivo **turtle_model_V_1_7.keras** debes hacerlo manualmente 
 
 > [!CAUTION]
 > En PC que no tenga una tarjeta de video posiblemente no funcione
