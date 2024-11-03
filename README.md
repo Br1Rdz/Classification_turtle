@@ -10,7 +10,7 @@ $\color{green}\LARGE{\textsf{Clasificador de imagenes de tortugas}}$
 > Para desplegar la aplicacion y uso
 > 1. Intala python >= 3.10
 > > Opciones para descargar el repositorio   
-> > * Puedes descargar el repertorio  desde mediante "zip" este se ecncuentra en parte derecha del repertorio.
+> > * Puedes descargar el repertorio desde **"<> code"** y despues seleccionar la opcion de **"Download zip"** 
 > > * Clona el repertorio "git clone" [Classification_turtle](https://github.com/Br1Rdz/Classification_turtle.git) en alguna carpeta de tu eleccion
 > 2. Instalacion de las dependencias a usar pip install -r requirements.txt
 > 3. Ejecuta la aplicación streamlit run Classification_turtle.py
