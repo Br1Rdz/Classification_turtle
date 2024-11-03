@@ -8,16 +8,19 @@
 
 > [!IMPORTANT]  
 > Para desplegar la aplicacion y uso
-> 1. Clona el repertorio [Classification_turtle](https://github.com/Br1Rdz/Classification_turtle.git) en alguna carpeta de tu eleccion
+> 1. Intala python >= 3.10
+> > Opciones para descargar el repositorio   
+> > * Puedes descargar el repertorio  desde mediante "zip" este se ecncuentra en parte derecha del repertorio.
+> > * Clona el repertorio "git clone" [Classification_turtle](https://github.com/Br1Rdz/Classification_turtle.git) en alguna carpeta de tu eleccion
 > 2. Instalacion de las dependencias a usar pip install -r requirements.txt
 > 3. Ejecuta la aplicación streamlit run Classification_turtle.py
 > 4. Añade la imagen a clasificar
 > 5. FELICIDADES AQUI ESTA TU CLASIFFICACION
 > 6. La aplicacion tambien tiene un chatbot sobre datos generales de las especie
-> 7. ESPERO DISFRUTES LA APP.
+> 7. ESPERO DISFRUTES LA APP
 
-> [!WARNING]  
-> Debido aque git no permite descargar archivos superiores a 250 mb el archivo **turtle_model_V_1_7.keras** debes hacerlo manualmente 
+> [!WARNING]
+> si por alguna razon no se descarga el archivo **turtle_model_V_1_7.keras** (250 mb) debes descargarlo de forma manual.
 
 > [!CAUTION]
-> En PC que no tenga una tarjeta de video posiblemente no funcione
+> En PC que no tenga una tarjeta de video posiblemente no funcione.
