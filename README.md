@@ -10,7 +10,8 @@ $\color{red}\LARGE{\textsf{Clasificador de imagenes de tortugas}}$
 > [!TIP]
 > Si usas GPU la clasificacion es mas rapido minimo de 2 Gbs
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
+> #Instrucciones
 > Para desplegar la aplicacion y uso
 > 1. Intala python >= 3.10
 > > Opciones para descargar el repositorio   
