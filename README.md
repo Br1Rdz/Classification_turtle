@@ -1,4 +1,4 @@
-$\color{red}\LARGE{\textsf{Clasificador de imagenes de tortugas}}$
+<h1 align='center'; font-size: 25px; color: white;'>🐢 Clasificador de imagenes de tortugas</h1>
 
 > [!NOTE]
 > - Web app: [Turtle_image_classification](https://huggingface.co/spaces/BugNo10/Turtle_image_classification)
@@ -29,3 +29,5 @@ $\color{red}\LARGE{\textsf{Clasificador de imagenes de tortugas}}$
 
 > [!CAUTION]
 > En PC que no tenga una tarjeta de video posiblemente no funcione.
+
+<h3 align='center'; color: white;'>✨Gracias por tu apoyo✨</h3>
